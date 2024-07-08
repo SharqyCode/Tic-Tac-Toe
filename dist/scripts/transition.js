@@ -1,0 +1,62 @@
+// ### HELPER FUNCTIONS ###
+export function hideScreen(screen) {
+    screen.style.display = "block";
+    let comps = Array.from(screen.children);
+    comps.forEach((comp) => {
+        comp.style.transform = "scale(0)";
+        if (!comp.classList.contains("topBar"))
+            comp.style.transition = "transform 0.5s ease-out 0s";
+    });
+}
+export function loadNextScreen(current, next, e, soundEffect) {
+    // Shrink the clicked button
+    let target = getButton(e);
+    if (!target.classList.contains("btnBack")) {
+        target.style.animation = "shrink 0.5s forwards";
+        playAudio(soundEffect);
+    }
+    let curr_comps = Array.from(current.children);
+    curr_comps.forEach((comp) => {
+        if (!comp.classList.contains("topBar")) {
+            comp.style.transition = "transform 0.5s ease-out 0s";
+            comp.style.animation = "shrink 0.5s 0.4s forwards";
+        }
+    });
+    setTimeout(() => {
+        playAudio(soundEffect);
+    }, 350);
+    setTimeout(() => {
+        curr_comps.forEach((comp) => {
+            if (!comp.classList.contains("topBar"))
+                comp.style.transform = "scale(0)";
+            comp.style.animation = "";
+            target.style.animation = "";
+        });
+        current.style.display = "none";
+        let next_comps = Array.from(next.children);
+        next.style.display = "block";
+        setTimeout(() => {
+            next_comps.forEach((comp) => {
+                comp.style.transform = "scale(1)";
+            });
+        }, 100);
+    }, 900);
+}
+export function playAudio(path) {
+    let audio = new Audio(path);
+    audio.play().catch((error) => {
+        console.error("Error playing audio:", error);
+    });
+}
+export function getButton(e) {
+    if (e.target.tagName === "BUTTON") {
+        return e.target;
+    }
+    else {
+        let target = e.target;
+        while (target.tagName !== "BUTTON") {
+            target = target.parentElement;
+        }
+        return target;
+    }
+}

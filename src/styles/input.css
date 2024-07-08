@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(./../fonts/inter/static/Inter-Regular.ttf) format('ttf');
+    }
+}
+
+#title_menu,
+#title_box {
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(1.5s * 0.3);
+    animation-timing-function: ease-in;
+}
+
+.inputWrapper::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 72px;
+    width: 72px;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    font-size: 48px;
+    background-color: #0F1422;
+}
+
+#wrapperX::before {
+    content: 'X';
+    color: #FFDB00;
+}
+
+#wrapperO::before {
+    content: 'O';
+    color: #F02D2D;
+}
+
+.btnGlow {
+    height: calc(100% + 1rem);
+}
+
+@keyframes dropDown {
+    100% {
+        transform: translateY(1500px);
+    }
+}
+
+@keyframes shrink {
+    30% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+/* @keyframes spin {
+    30% {
+        transform: rotate(-30deg);
+        filter: blur(0px);
+    }
+
+    100% {
+        transform: rotate(30deg);
+        filter: blur(4px);
+    }
+} */

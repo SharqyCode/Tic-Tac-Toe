@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./dist/styles/output.css" rel="stylesheet">
+    <title>Tic-Tac-Toe</title>
+</head>
+
+<body class="relative bg-main h-svh overflow-hidden">
+    <div class="wrapper relative lg:w-[430px] max-w-full h-svh mx-auto">
+        <div id="title_screen" class="absolute w-full mx-auto h-svh p-10 overflow-hidden z-50">
+            <div id="title_box" class="mt-20 flex justify-center mx-auto max-w-[500px] lg:mt-10">
+                <img id="title_img" class="w-full" src="./src/assets/title.png" alt="Game title: Tic-Tac-Toe">
+            </div>
+            <div id="title_menu" class="flex flex-col text-center font-bold tracking-widest">
+                <button id="btnPlay"
+                    class="relative block text-4xl text-center text-white bg-accent mt-10 py-5 rounded-t-[4px]">PLAY
+                    <span class="block absolute -bottom-4 h-4 w-full bg-shadow rounded-b-2xl"></span>
+                </button>
+                <button id="btnExit"
+                    class="relative block text-4xl text-center text-white bg-accent mt-10 py-5 rounded-t-[4px]">EXIT
+                    <span class="block absolute -bottom-4 h-4 w-full bg-shadow rounded-b-2xl"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Game Mode Screen -->
+        <div id="mode_screen" class="absolute w-full mx-auto h-svh overflow-hidden hidden z-40">
+            <div class="comp topBar mt-14 px-10 lg:px-0">
+                <button class="btnBack w-14 aspect-square bg-shadow rounded-[4px] grid place-items-center"
+                    data-screen="mode">
+                    <img src="./src/assets/backArrow.png" alt="" class="w-8">
+                </button>
+            </div>
+            <div
+                class="comp titleBar relative mt-32 py-1 text-center bg-shadow border-y-deep border-y-[20px] text-white text-3xl font-bold leading-tight lg:rounded-md lg:mt-16">
+
+                <span>
+                    CHOOSE THE <br />
+                    GAME MODE
+                </span>
+            </div>
+            <div class="comp modeMenu mt-32 justify-center flex gap-10 px-10 lg:mt-16">
+
+                <button id="btnClassic" class="card block w-[150px] aspect-square bg-shadow relative rounded-t-2xl">
+                    <img src="./src/assets/oldman.png" alt="old man icon" class="w-32 mx-auto mt-2">
+                    <div
+                        class="card_label absolute bottom-0 w-full py-1 bg-deep text-yellow tracking-widest text-center">
+                        <span>CLASSIC</span>
+                        <span class="block absolute -bottom-4 h-4 w-full bg-black rounded-b-2xl"></span>
+                    </div>
+                </button>
+
+                <button id="btnAdvanced" class="card w-[150px] aspect-square bg-shadow relative rounded-t-2xl">
+                    <img src="./src/assets/lightBulb.png" alt="light bulb icon" class="w-32 mx-auto mt-2">
+                    <div class="card_label absolute bottom-0 w-full py-1 bg-deep text-red tracking-widest text-center">
+                        <span>ADVANCED</span>
+                        <span class="block absolute -bottom-4 h-4 w-full bg-black rounded-b-2xl"></span>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+        <!-- Opponent Screen -->
+        <div id="opp_screen" class="absolute w-full mx-auto h-svh overflow-hidden hidden z-30">
+            <div class="topBar mt-14  px-10 lg:px-0">
+                <button class="btnBack w-14 aspect-square bg-shadow rounded-[4px] grid place-items-center"
+                    data-screen="opponent">
+                    <img src="./src/assets/backArrow.png" alt="" class="w-8">
+                </button>
+            </div>
+            <div
+                class="titleBar mt-32 py-1 text-center bg-shadow border-y-deep border-y-[20px] text-white text-3xl font-bold leading-tight lg:rounded-md lg:mt-16">
+                <span>
+                    CHOOSE YOUR <br />
+                    OPPONENT
+                </span>
+            </div>
+            <div class="modeMenu mt-32 justify-center flex gap-10 px-10 lg:mt-16">
+                <button id="btnCPU" class="card block w-[150px] aspect-square bg-shadow relative rounded-t-2xl">
+                    <img src="./src/assets/cpu.png" alt="old man icon" class="w-32 mx-auto mt-2">
+                    <div
+                        class="card_label absolute bottom-0 w-full py-1 bg-deep text-yellow tracking-widest text-center">
+                        <span>CPU</span>
+                        <span class="block absolute -bottom-4 h-4 w-full bg-black rounded-b-2xl"></span>
+                    </div>
+                </button>
+                <button id="btn1v1" class="card block w-[150px] aspect-square bg-shadow relative rounded-t-2xl">
+                    <img src="./src/assets/1v1.png" alt="light bulb icon" class="w-32 mx-auto mt-2">
+                    <div class="card_label absolute bottom-0 w-full py-1 bg-deep text-red tracking-widest text-center">
+                        <span>1 VS 1</span>
+                        <span class="block absolute -bottom-4 h-4 w-full bg-black rounded-b-2xl"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div id="single_screen" class="absolute w-full h-svh overflow-hidden hidden z-20">
+            <div class="topBar mt-14 px-10 lg:px-0">
+                <button class="btnBack w-14 aspect-square bg-shadow rounded-[4px] grid place-items-center"
+                    data-screen="single">
+                    <img src="./src/assets/backArrow.png" alt="" class="w-8">
+                </button>
+            </div>
+            <div
+                class="titleBar mt-32 py-1 text-center bg-shadow border-y-deep border-y-[20px] text-white text-3xl font-bold leading-tight lg:rounded-md lg:mt-16">
+                <span>
+                    CHOOSE YOUR <br />
+                    SYMBOL
+                </span>
+            </div>
+            <div class=" px-10">
+                <div class="modeMenu mt-20 justify-center flex gap-10 lg:mt-16">
+
+                    <button id="choose_X"
+                        class="card w-[150px] aspect-square bg-shadow relative rounded-t-2xl grid place-items-center text-yellow font-bold text-9xl"
+                        value="X">
+                        X
+                        <span class="block absolute -bottom-4 h-4 w-full bg-deep rounded-b-2xl"></span>
+                        <div class="btnGlow absolute w-full left-0 top-0 rounded-2xl shadow-btn shadow-yellow hidden">
+                        </div>
+
+                    </button>
+
+                    <button id="choose_O"
+                        class="card w-[150px] aspect-square bg-shadow relative rounded-t-2xl grid place-items-center text-red font-bold text-9xl"
+                        value="O">
+                        O
+                        <span class="block absolute -bottom-4 h-4 w-full bg-deep rounded-b-2xl"></span>
+                        <div class="btnGlow absolute w-full left-0 top-0 rounded-2xl shadow-btn shadow-red hidden">
+                        </div>
+                    </button>
+
+                </div>
+                <button
+                    class="btnStart relative mx-auto w-full block text-4xl text-center text-white bg-accent mt-12 py-5 rounded-t-[4px]">START
+                    GAME
+                    <span class="block absolute -bottom-4 h-4 w-full bg-shadow rounded-b-2xl"></span>
+                </button>
+            </div>
+        </div>
+        <div id="multi_screen" class="absolute w-full h-svh overflow-hidden hidden z-20">
+            <div class="topBar mt-14 px-10 lg:px-0">
+                <button class="btnBack w-14 aspect-square bg-shadow rounded-[4px] grid place-items-center"
+                    data-screen="multi">
+                    <img src="./src/assets/backArrow.png" alt="" class="w-8">
+                </button>
+            </div>
+            <div
+                class="titleBar mt-32 py-1 text-center bg-shadow border-y-deep border-y-[20px] text-white text-3xl font-bold leading-tight lg:rounded-md lg:mt-16">
+                <span>
+                    ENTER YOUR <br />
+                    NAMES
+                </span>
+            </div>
+            <div class=" px-10">
+                <form class="modeMenu mt-10 gap-10 flex flex-col gap-5 lg:mt-16">
+                    <div id="wrapperX" class="inputWrapper relative w-fit mx-auto">
+                        <input name="player_one" type="text" placeholder="Player One"
+                            class=" bg-shadow ps-20 py-5 text-2xl text-white placeholder:text-opacity-25 outline-none ">
+                    </div>
+                    <div id="wrapperO" class="inputWrapper relative w-fit mx-auto">
+                        <input name="player_two" type="text" placeholder="Player Two"
+                            class=" bg-shadow ps-20 py-5 text-2xl text-white placeholder:text-opacity-25 outline-none">
+                    </div>
+
+                </form>
+                <button
+                    class="btnStart relative mx-auto w-full block text-4xl text-center text-white font-bold bg-accent mt-12 py-5 rounded-t-[4px]">START
+                    GAME
+                    <span class="block absolute -bottom-4 h-4 w-full bg-shadow rounded-b-2xl"></span>
+                </button>
+            </div>
+        </div>
+        <div id="game_screen" class="absolute w-full h-svh overflow-hidden hidden pt-10 px-5 pb-10">
+            <div class="score_board flex items-center justify-between max-w-[650px] mx-auto">
+                <div id="player_one" class="card flex flex-col aspect-square">
+                    <div class="card_name p-2 bg-deep text-white tracking-widest text-center text-xl rounded-t">
+                        You
+                    </div>
+                    <div
+                        class="card_symbol bg-shadow text-yellow font-bold text-7xl text-center w-28 aspect-square grid place-items-center">
+                        X
+                    </div>
+                    <div class="card_score p-2 bg-deep text-white tracking-widest text-center text-xl rounded-b">
+                        0
+                    </div>
+                </div>
+                <div id="btnPause" class="grid place-items-center relative h-20 aspect-square bg-accent rounded-t">
+                    <img src="./src/assets/pause.png" alt="pause button symbol" class="w-8">
+                    <span class="block absolute -bottom-4 h-4 w-full bg-shadow rounded-b-2xl">
+                    </span>
+                </div>
+                <div id="player_two" class="card flex flex-col  aspect-square">
+                    <div class="card_name p-2 bg-deep text-white tracking-widest text-center text-xl rounded-t">
+                        CPU
+                    </div>
+                    <div
+                        class="card_symbol bg-shadow text-red font-bold text-7xl text-center w-28 aspect-square grid place-items-center">
+                        O
+                    </div>
+                    <div class="card_score p-2 bg-deep text-white tracking-widest text-center text-xl rounded-b">
+                        0
+                    </div>
+                </div>
+            </div>
+            <div id="game_board" class="grid grid-rows-3 grid-cols-3 gap-3 mt-32 max-w-[650px] mx-auto lg:mt-16">
+            </div>
+
+        </div>
+        <img class="absolute -bottom-6 -z-10 left-0 lg:hidden" src="./src/assets/layered-waves-haikei (1) 2.png" alt="">
+    </div>
+    <div id="pauseBackdrop"
+        class="dark_backdrop absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 px-5 hidden">
+        <div id="pauseMenu"
+            class="relative w-full max-w-[430px] p-12 bg-accent rounded-2xl mx-auto mt-80 text-center lg:mt-40">
+            <span
+                class="menu_title rounded bg-deep text-accent py-4 px-8 absolute top-0 -translate-y-1/2 -translate-x-1/2 text-2xl">PAUSED</span>
+            <div class="buttons flex flex-col">
+                <button id="btnResume"
+                    class="relative mx-auto w-full block text-4xl text-center text-white font-bold bg-shadow mt-12 py-5 rounded-t-[4px]">RESUME
+                    <span class="block absolute -bottom-4 h-4 w-full bg-deep rounded-b-2xl"></span>
+                </button>
+                <button
+                    class="btnExitGame relative mx-auto w-full block text-4xl text-center text-white font-bold bg-shadow mt-12 py-5 rounded-t-[4px]">EXIT
+                    <span class="block absolute -bottom-4 h-4 w-full bg-deep rounded-b-2xl"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div id="gameOverBackdrop"
+        class="dark_backdrop absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 px-5 hidden">
+        <div id="gameOverMenu"
+            class="relative w-full max-w-[430px] p-12 bg-accent rounded-2xl mx-auto mt-80 text-center lg:mt-40">
+            <span
+                class="menu_title rounded bg-deep text-accent py-4 px-8 absolute top-0 -translate-y-1/2 -translate-x-1/2 text-2xl">GAME
+                OVER</span>
+            <div class="buttons flex flex-col">
+                <h2 id="gameOverMsg" class="text-4xl font-bold text-white"></h2>
+                <button id="btnContinue"
+                    class="relative mx-auto w-full block text-4xl text-center text-white font-bold bg-shadow mt-12 py-5 rounded-t-[4px]">CONTINUE
+                    <span class="block absolute -bottom-4 h-4 w-full bg-deep rounded-b-2xl"></span>
+                </button>
+                <button
+                    class="btnExitGame relative mx-auto w-full block text-4xl text-center text-white font-bold bg-shadow mt-12 py-5 rounded-t-[4px]">EXIT
+                    <span class="block absolute -bottom-4 h-4 w-full bg-deep rounded-b-2xl"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class=" bottom-0 left-0 waves hidden lg:flex">
+        <img class="absolute -bottom-6 -z-10 left-0 w-[430px]" src="./src/assets/layered-waves-haikei (1) 2.png" alt="">
+        <img class="absolute -bottom-6 -z-10 left-[430px] w-[430px] skew"
+            src="./src/assets/layered-waves-haikei (1) 2 - mirrored.png" alt="">
+        <img class="absolute -bottom-6 -z-10 left-[860px] w-[430px]" src="./src/assets/layered-waves-haikei (1) 2.png"
+            alt="">
+        <img class="absolute -bottom-6 -z-10 left-[1290px] w-[430px]"
+            src="./src/assets/layered-waves-haikei (1) 2 - mirrored.png" alt="">
+    </div>
+    <script src="./dist/scripts/startGame.js"></script>
+    <script type="module" src="./dist/scripts/game.js"></script>
+</body>
+
+</html>
