@@ -1,7 +1,7 @@
 import { hideScreen, loadNextScreen } from "./transition.js";
 import { GameSettings } from "./gameSettings.js";
 // Audio path
-let swooshAudio = "./../sounds/swoosh.m4a";
+let swooshAudio = "https://github.com/SharqyCode/Tic-Tac-Toe/blob/main/dist/sounds/swoosh.m4a";
 // App Screens
 let title_screen = document.getElementById("title_screen");
 let mode_screen = document.getElementById("mode_screen");
